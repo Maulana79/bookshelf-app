@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Advanced Bookshelf App</title>
+    <link rel="stylesheet" href="style.css" />
+    <script type="module" src="script/app.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <div class="header-container">
+        <h1>Bookshelf App</h1>
+        <div class="theme-switcher-wrapper">
+          <label class="theme-switcher">
+            <input type="checkbox" id="themeToggle" />
+            <span class="slider"></span>
+          </label>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="main-actions">
+        <button id="addBookButton" class="button-primary">Tambah Buku Baru</button>
+      </section>
+
+      <section class="search-section">
+        <div class="search-bar">
+          <h2>Cari Buku</h2>
+          <form id="searchBook" data-testid="searchBookForm">
+            <input id="searchBookTitle" type="text" placeholder="Cari berdasarkan judul..."/>
+          </form>
+        </div>
+        <div class="sort-bar">
+          <label for="sort-books">Urutkan:</label>
+          <select id="sort-books">
+            <option value="title-asc">Judul (A-Z)</option>
+            <option value="title-desc">Judul (Z-A)</option>
+            <option value="year-desc">Tahun (Terbaru)</option>
+            <option value="year-asc">Tahun (Terlama)</option>
+          </select>
+        </div>
+      </section>
+
+      <section class="book-shelf">
+        <h2>Belum selesai dibaca</h2>
+        <div id="incompleteBookList" data-testid="incompleteBookList"></div>
+      </section>
+      <section class="book-shelf">
+        <h2>Selesai dibaca</h2>
+        <div id="completeBookList" data-testid="completeBookList"></div>
+      </section>
+    </main>
+    
+    <section id="bookDetailView" class="book-detail-container" style="display: none;">
+      <button id="backToListButton" class="button-secondary">← Kembali ke Rak</button>
+      <h2 id="detailTitle" class="detail-title"></h2>
+      <p id="detailAuthor"></p>
+      <p id="detailYear"></p>
+      <div id="detailRating" class="book-rating"></div>
+      <div id="detailTags" class="book-tags detail-tags-container"></div>
+      <div class="notes-section">
+        <h3>Catatan Pribadi</h3>
+        <p>Fitur ini bisa Anda kembangkan untuk menyimpan catatan ke localStorage!</p>
+        <textarea id="detailNotes" placeholder="Tulis catatan atau review singkat di sini..." readonly></textarea>
+      </div>
+    </section>
+
+    <footer>
+      <p>&copy; 2025 - Bookshelf App | Muhammad Maulana</p>
+    </footer>
+
+    <div id="bookModal" class="modal-overlay" style="display: none;">
+      <div class="modal-content">
+        <h2 id="modalTitle">Tambah Buku Baru</h2>
+        <form id="bookForm" data-testid="bookForm">
+          <input type="hidden" id="bookId" />
+          <div><label for="bookFormTitle">Judul</label><input id="bookFormTitle" type="text" required /></div>
+          <div><label for="bookFormAuthor">Penulis</label><input id="bookFormAuthor" type="text" required /></div>
+          <div><label for="bookFormYear">Tahun</label><input id="bookFormYear" type="number" required /></div>
+          <div><label for="bookFormRating">Rating (1-5)</label><input id="bookFormRating" type="number" min="1" max="5" required /></div>
+          <div><label for="bookFormTags">Tags (pisahkan dengan koma)</label><input id="bookFormTags" type="text" placeholder="Fiksi, Petualangan..." /></div>
+          <div class="checkbox-wrapper"><label for="bookFormIsComplete">Selesai dibaca</label><input id="bookFormIsComplete" type="checkbox" /></div>
+          <div class="modal-buttons">
+            <button type="submit" id="bookFormSubmit" class="button-primary">Simpan</button>
+            <button type="button" id="cancelModalButton" class="button-secondary">Batal</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div id="toastContainer"></div>
+  </body>
+</html>
